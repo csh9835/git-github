@@ -26,3 +26,10 @@ git reset --soft (커밋 아이디): 리셋인데 변동사항 안지우고 스�
 git reset --mixed (커밋 아이디): 리셋인데 변동사항 안지우고 unstage해놓음
 git branch -M (브랜치명): 메인 브랜치이름 변경
 git push -u (원격저장소주소:깃허브 주소) (올리고싶은 로컬브랜치명): 로컬 -> 원격저장소 업로드
+git stash (save: 원하는 경우 집어넣으면 메모가능): 코드를 임시공간으로 보냄 -> 코드목록 조회는 git stash list
+    - 최근 커밋과의 차이점을 전부 보관
+    - 스테이징 안해놓은 새로운 파일은 stash 안될 수도 있음 -> 강제로 하는 방법도 존재
+    - 불러올땐 git stash pop(가장 최근에 보관했던 코드부터 불러옴)
+    - git stash drop (번호): 1개 삭제
+    - git stash clear: 전부삭제
+    - git stash -p: 일부 코드만 보관

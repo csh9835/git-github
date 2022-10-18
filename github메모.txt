@@ -1,0 +1,37 @@
+git push -u (원격저장소주소:깃허브 주소) (올리고싶은 로컬브랜치명): 로컬 -> 원격저장소 업로드
+          -> -u: 주소 기억, 다음에 푸쉬할때 주소입력 불필요
+git remote add (변수명) (주소): 주소를 변수에 할당
+git remote -v: 변수목록 확인
+.gitignore파일: 제외하고싶은 파일 명단
+git clone (원격저장소주소): 원격저장소에 있던 내용 다운로드
+깃헙 협업시 주의사항
+    1. 팀원도 깃헙 아이디 필요
+    2. 팀원의 아이디를 Collaborators 메뉴에 등록해놔야 협업가능
+    3. 원격과 로컬 내용이 다르면 로컬저장소에서 git push안됨 -> 코드꼬임 방지용
+git pull (원격저장소주소) (필요시 브랜치명 입력): 원격저장소에 있던 모든 브랜치 내용을 가져와서 로컬저장소에 합치기(로컬을 최신상태로 업데이트)
+    - 변수주소 사용가능
+    - (-u)옵션 사용가능
+    - git pull = git fetch + git merge -> git fetch: 원격저장소에 있는 commit 중에 로컬에 없는 신규 commit을 가져오기
+    - git pull 할 때 팀원 2명이서 같은 파일을 건드리고 있을 경우 merge conflict가 날 수 있음
+pull request = merge request
+    1. 머지 요청
+    2. 어떤 브랜치를 어디에 합칠 것인지 선택하고 commit 내역, 변경내역 확인 후 create pull request
+    3. pull request메뉴에서 리뷰
+    4. 머지 옵션(3-way, squash, rebase) 선택 후 머지완료
+브랜치 전략엔 git flow, github flow, gitlab flow, trunk-based 등 다양함 -> 브랜치전략을 적용하면 브랜치관리가 쉬워지고 팀원이 많아도 개발절차가 매끄러워짐
+git flow전략: 안정적인 운영
+    - main 브랜치
+    - develop 브랜치
+    - feature 브랜치 (develop에 기능추가용)
+    - hotfix 브랜치 (main 브랜치 버그 해결용)
+    - 가끔 release 브랜치 (develop, main 브랜치 결합 전 최종테스트용)
+trunk-based전략: 큰 변동없는 안정적인 프로그램
+    1. 기능추가, 버그픽스가 필요하면 main 브랜치에서 새로운 브랜치를 하나 만들고 작업
+    2. 기능이 완성되었으면 main 브랜치에 결합
+    3. main 브랜치에 있는 코드를 필요할 때 마다 유저들에게 배포
+    
+    - trunk-based 개발의 장점은 코드를 한 브랜치에서만 관리하기 때문에 편리
+    - 크게 개발해서 한 번에 merge 하는 것 보다 작은 단위로 merge 하는 것이 더 안전
+    - main 브랜치에 있는 코드가 잘못되면 위험하기 때문에 테스트나 코드리뷰를 자주해야함 -> 테스트를 자주하고 자동화해놓는 곳들이 제대로 사용가능
+기록을 남겨야하는 중요한 브랜치를 merge할 땐 3-way merge
+기록을 남길 필요없는 중요도 낮은 브랜치를 merge할 땐 squash, rebase
